@@ -1,0 +1,25 @@
+@import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@300;400;500;600;700&family=Rubik:ital,wght@0,300..900;1,300..900&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: 'Rubik', sans-serif;
+  --font-mono: 'Rajdhani', sans-serif;
+
+  --color-slate-950: #060606;
+  /* Deep Black */
+  --color-slate-900: #141414;
+  /* Card BG */
+  --color-slate-800: #1f1f1f;
+  /* Lighter Black */
+
+  --color-accent: #FF014F;
+  /* Reeni Magenta */
+  --color-accent-hover: #d10141;
+}
+
+/* Custom Utilities if needed, but standard tailwind usually enough */
+body {
+  background-color: var(--color-slate-950);
+  color: #fff;
+  font-family: var(--font-sans);
+}
