@@ -8,6 +8,7 @@ import wealthImg from './assets/wealth-dashboard.png';
 import complianceImg from './assets/compliance-system.png';
 import logisticsImg from './assets/logistics-tracking.png';
 import cvPdf from './assets/Abdul_React_CV.pdf';
+import logoImg from './assets/logo.png';
 
 const projects = [
   {
@@ -148,52 +149,87 @@ function App() {
       title: 'Profile Overview',
       subtitle: 'Summary',
       fullContent: (
-        <div className="space-y-4">
-          <p className="text-lg text-slate-300">
-            Berlin, Germany
-          </p>
-          <p className="text-slate-300">
-            Senior Frontend Engineer with 8+ years of experience building scalable, high-performance web applications using React, TypeScript, and modern frontend architectures. Strong expertise in component-based design, state management, and performance optimization.
-          </p>
-          <p className="text-slate-300">
-            Proven experience collaborating with designers, backend engineers, and product teams to deliver maintainable, user-centric interfaces in Agile environments.
-          </p>
-          <div className="flex gap-2 flex-wrap mt-4">
-            <span className="px-3 py-1 rounded-full bg-cyan-500/10 text-cyan-400 text-xs border border-cyan-500/20">React</span>
-            <span className="px-3 py-1 rounded-full bg-purple-500/10 text-purple-400 text-xs border border-purple-500/20">TypeScript</span>
-            <span className="px-3 py-1 rounded-full bg-pink-500/10 text-pink-400 text-xs border border-pink-500/20">Micro-Frontends</span>
-            <span className="px-3 py-1 rounded-full bg-red-500/10 text-red-400 text-xs border border-red-500/20">Angular</span>
-            <span className="px-3 py-1 rounded-full bg-emerald-500/10 text-emerald-400 text-xs border border-emerald-500/20">Vue.js</span>
-            <span className="px-3 py-1 rounded-full bg-lime-500/10 text-lime-400 text-xs border border-lime-500/20">Node.js</span>
+        <div className="flex flex-col md:flex-row gap-8 items-start">
+          <div className="w-32 h-32 md:w-40 md:h-40 shrink-0 rounded-2xl overflow-hidden border-2 border-accent/20 relative group/pic shadow-2xl">
+            <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-transparent z-10 opacity-60"></div>
+            <div className="absolute inset-0 bg-accent/10 opacity-0 group-hover/pic:opacity-100 transition-opacity duration-500 z-20"></div>
+            {/* User can replace 'logoImg' with 'profileImg' once added */}
+            <img
+              src={logoImg}
+              alt="Profile"
+              className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700 scale-110 group-hover/pic:scale-100"
+            />
+            <div className="absolute bottom-2 left-2 z-30 opacity-0 group-hover/pic:opacity-100 transition-opacity">
+              <span className="text-[10px] text-accent font-mono uppercase tracking-tighter bg-slate-900/80 px-2 py-1 rounded">Resume Photo</span>
+            </div>
+          </div>
+
+          <div className="space-y-4 flex-1">
+            <p className="text-lg text-slate-300 font-mono flex items-center gap-2">
+              <MapPin size={18} className="text-accent" />
+              Berlin, Germany
+            </p>
+            <p className="text-slate-300 leading-relaxed">
+              Senior Frontend Engineer with 8+ years of experience building scalable, high-performance web applications using React, TypeScript, and modern frontend architectures. Strong expertise in component-based design, state management, and performance optimization.
+            </p>
+            <p className="text-slate-300 leading-relaxed">
+              Proven experience collaborating with designers, backend engineers, and product teams to deliver maintainable, user-centric interfaces in Agile environments.
+            </p>
+            <div className="flex gap-2 flex-wrap mt-4">
+              <span className="px-3 py-1 rounded-full bg-cyan-500/10 text-cyan-400 text-xs border border-cyan-500/20">React</span>
+              <span className="px-3 py-1 rounded-full bg-purple-500/10 text-purple-400 text-xs border border-purple-500/20">TypeScript</span>
+              <span className="px-3 py-1 rounded-full bg-pink-500/10 text-pink-400 text-xs border border-pink-500/20">Micro-Frontends</span>
+              <span className="px-3 py-1 rounded-full bg-red-500/10 text-red-400 text-xs border border-red-500/20">Angular</span>
+              <span className="px-3 py-1 rounded-full bg-emerald-500/10 text-emerald-400 text-xs border border-emerald-500/20">Vue.js</span>
+              <span className="px-3 py-1 rounded-full bg-lime-500/10 text-lime-400 text-xs border border-lime-500/20">Node.js</span>
+            </div>
           </div>
         </div>
+      ),
+      headerActions: (
+        <>
+          <a href="https://github.com/abdul191993" target="_blank" rel="noopener noreferrer" className="text-slate-400 hover:text-white hover:bg-slate-800/50 p-2 rounded-lg transition-all flex items-center gap-2 text-sm font-mono border border-slate-700/50">
+            <Github size={18} />
+            <span className="hidden sm:inline">GitHub</span>
+          </a>
+          <a href="https://linkedin.com/in/abdul-quddoos-810b13193" target="_blank" rel="noopener noreferrer" className="text-slate-400 hover:text-white hover:bg-slate-800/50 p-2 rounded-lg transition-all flex items-center gap-2 text-sm font-mono border border-slate-700/50">
+            <Linkedin size={18} />
+            <span className="hidden sm:inline">LinkedIn</span>
+          </a>
+          <a
+            href={cvPdf}
+            download="Abdul_Quddoos_CV.pdf"
+            className="bg-accent/10 hover:bg-accent/20 text-accent border border-accent/20 px-4 py-2 rounded-lg transition-all flex items-center gap-2 text-sm font-bold"
+          >
+            <Download size={18} />
+            Download CV
+          </a>
+        </>
       )
     },
     {
       id: 'projects',
       title: 'Selected Professional Projects',
-      subtitle: 'Key Deliverables (Click for details)',
+      subtitle: 'Key Deliverables',
       fullContent: (
-        <div>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            {projects.map(project => (
-              <motion.div
-                key={project.id}
-                layoutId={`project-card-${project.id}`}
-                onClick={() => setSelectedProject(project)}
-                className="bg-slate-800/50 p-4 rounded-xl border border-slate-700 cursor-pointer hover:bg-slate-800 transition-colors group/project"
-                whileHover={{ scale: 1.02 }}
-              >
-                <div className="h-40 rounded-lg mb-4 overflow-hidden group-hover/project:scale-[1.02] transition-transform duration-500 relative">
-                  <img src={project.image} alt={project.title} className="w-full h-full object-cover opacity-80 group-hover/project:opacity-100 transition-opacity" />
-                  <div className="absolute inset-0 bg-gradient-to-t from-slate-900/80 to-transparent"></div>
-                </div>
-                <h5 className="text-white font-bold group-hover/project:text-accent transition-colors">{project.title}</h5>
-                <p className="text-slate-400 text-sm mt-1">{project.tech}</p>
-                <p className="text-slate-500 text-xs mt-2 line-clamp-2">{project.description}</p>
-              </motion.div>
-            ))}
-          </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          {projects.map(project => (
+            <motion.div
+              key={project.id}
+              layoutId={`project-card-${project.id}`}
+              onClick={() => setSelectedProject(project)}
+              className="bg-slate-800/50 p-4 rounded-xl border border-slate-700 cursor-pointer hover:bg-slate-800 transition-colors group/project"
+              whileHover={{ scale: 1.02 }}
+            >
+              <div className="h-40 rounded-lg mb-4 overflow-hidden group-hover/project:scale-[1.02] transition-transform duration-500 relative">
+                <img src={project.image} alt={project.title} className="w-full h-full object-cover opacity-80 group-hover/project:opacity-100 transition-opacity" />
+                <div className="absolute inset-0 bg-gradient-to-t from-slate-900/80 to-transparent"></div>
+              </div>
+              <h5 className="text-white font-bold group-hover/project:text-accent transition-colors">{project.title}</h5>
+              <p className="text-slate-400 text-sm mt-1">{project.tech}</p>
+              <p className="text-slate-500 text-xs mt-2 line-clamp-2">{project.description}</p>
+            </motion.div>
+          ))}
         </div>
       )
     },
@@ -232,9 +268,7 @@ function App() {
       id: 'contact',
       title: 'Get in Touch',
       subtitle: 'Contact Me',
-      fullContent: (
-        <ContactForm />
-      )
+      fullContent: <ContactForm />
     }
   ], []);
 
@@ -244,43 +278,33 @@ function App() {
 
       <div className="w-full px-4 md:w-[80%] max-w-[1600px] z-10 space-y-8">
         <header className="mb-12 border-b border-white/5 pb-8">
-          <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
-            <div>
-              <h1 className="text-5xl md:text-7xl font-bold text-white tracking-tight mb-2 uppercase font-mono">
-                Abdul <span className="text-accent">Quddoos</span>
-              </h1>
-              <p className="text-slate-400 text-lg font-mono flex items-center gap-2">
-                Senior Frontend Developer
-                <span className="w-2 h-2 rounded-full bg-accent animate-pulse ml-2"></span>
-                <span className="text-slate-500 text-xs uppercase tracking-widest hidden md:inline">Available for work</span>
-              </p>
+          <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-8">
+            <div className="flex items-center gap-6">
+              <div className="w-16 h-16 md:w-20 md:h-20 shrink-0 p-1 rounded-2xl bg-gradient-to-br from-cyan-500 to-magenta-500/20 flex items-center justify-center relative group/logo">
+                <div className="absolute inset-0 bg-accent/20 blur-xl rounded-full opacity-0 group-hover/logo:opacity-100 transition-opacity duration-700"></div>
+                <img src={logoImg} alt="Portfolio Logo" className="w-full h-full object-cover rounded-xl relative z-10" />
+              </div>
+              <div>
+                <h1 className="text-5xl md:text-7xl font-bold text-white tracking-tight mb-2 uppercase font-mono">
+                  Abdul <span className="text-accent">Quddoos</span>
+                </h1>
+                <p className="text-slate-400 text-lg font-mono flex items-center gap-2">
+                  Senior Frontend Developer
+                  <span className="w-2 h-2 rounded-full bg-accent animate-pulse ml-2"></span>
+                  <span className="text-slate-500 text-xs uppercase tracking-widest hidden md:inline">Available for work</span>
+                </p>
+              </div>
             </div>
 
-            <div className="flex flex-wrap gap-4 md:gap-6">
-              <a href="https://github.com/abdul191993" target="_blank" rel="noopener noreferrer" className="text-slate-400 hover:text-white transition-colors flex items-center gap-2 text-sm font-mono">
-                <Github size={18} />
-                <span className="hidden sm:inline">GitHub</span>
-              </a>
-              <a href="https://linkedin.com/in/abdul-quddoos-810b13193" target="_blank" rel="noopener noreferrer" className="text-slate-400 hover:text-white transition-colors flex items-center gap-2 text-sm font-mono">
-                <Linkedin size={18} />
-                <span className="hidden sm:inline">LinkedIn</span>
-              </a>
-              <div className="text-slate-400 flex items-center gap-2 text-sm font-mono border-l border-white/10 pl-4 md:pl-6">
-                <Mail size={18} />
+            <div className="flex flex-col sm:flex-row gap-4 md:gap-8 items-start sm:items-center">
+              <div className="text-slate-400 flex items-center gap-2 text-sm font-mono bg-white/5 px-4 py-2 rounded-full">
+                <Mail size={16} className="text-accent" />
                 <span>abdul.quddoos8863@gmail.com</span>
               </div>
-              <div className="text-slate-400 flex items-center gap-2 text-sm font-mono">
-                <Phone size={18} />
+              <div className="text-slate-400 flex items-center gap-2 text-sm font-mono bg-white/5 px-4 py-2 rounded-full">
+                <Phone size={16} className="text-accent" />
                 <span>+49 155 63771672</span>
               </div>
-              <a
-                href={cvPdf}
-                download="Abdul_Quddoos_CV.pdf"
-                className="bg-accent/10 hover:bg-accent/20 text-accent border border-accent/20 px-4 py-2 rounded-lg transition-all flex items-center gap-2 text-sm font-bold ml-0 md:ml-4"
-              >
-                <Download size={18} />
-                Download CV
-              </a>
             </div>
           </div>
         </header>
@@ -292,6 +316,7 @@ function App() {
                 title={item.title}
                 subtitle={item.subtitle}
                 className="w-full"
+                headerActions={item.headerActions}
               >
                 {/* Render the full content directly */}
                 {item.fullContent}

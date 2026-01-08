@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { cn } from "../utils/cn";
 
-export function Card({ title, subtitle, className, children }) {
+export function Card({ title, subtitle, className, children, headerActions }) {
     return (
         <motion.div
             className={cn(
@@ -36,12 +36,23 @@ export function Card({ title, subtitle, className, children }) {
             }}
         >
             <div className="relative z-10">
-                <h3 className="text-2xl font-bold text-white mb-2 group-hover:text-accent transition-colors font-sans">
-                    {title}
-                </h3>
-                <p className="text-slate-400 text-sm mb-6 font-mono uppercase tracking-wider">
-                    {subtitle}
-                </p>
+                <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-4">
+                    <div>
+                        <h3 className="text-2xl font-bold text-white group-hover:text-accent transition-colors font-sans">
+                            {title}
+                        </h3>
+                        {subtitle && (
+                            <p className="text-slate-400 text-sm font-mono uppercase tracking-wider mt-1">
+                                {subtitle}
+                            </p>
+                        )}
+                    </div>
+                    {headerActions && (
+                        <div className="flex flex-wrap gap-2">
+                            {headerActions}
+                        </div>
+                    )}
+                </div>
                 <div className="text-slate-300">
                     {children}
                 </div>
