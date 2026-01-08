@@ -15,9 +15,9 @@ export function Card({ title, subtitle, className, children }) {
                 y: 0,
                 scale: [1, 1.005, 1],
                 boxShadow: [
-                    "0px 0px 0px 0px rgba(0,0,0,0)",
-                    "0px 10px 30px -10px rgba(255,1,79,0.1)",
-                    "0px 0px 0px 0px rgba(0,0,0,0)"
+                    "0 0 0 0 rgba(0, 0, 0, 0)",
+                    "0 0 40px 5px rgba(255, 1, 79, 0.3)",
+                    "0 0 0 0 rgba(0, 0, 0, 0)"
                 ]
             }}
             whileHover={{ scale: 1.02, transition: { duration: 0.2 } }}
@@ -25,12 +25,12 @@ export function Card({ title, subtitle, className, children }) {
                 default: { duration: 0.5 },
                 scale: {
                     repeat: Infinity,
-                    duration: 4,
+                    duration: 3,
                     ease: "easeInOut"
                 },
                 boxShadow: {
                     repeat: Infinity,
-                    duration: 4,
+                    duration: 3,
                     ease: "easeInOut"
                 }
             }}
