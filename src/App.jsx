@@ -150,20 +150,6 @@ function App() {
       subtitle: 'Summary',
       fullContent: (
         <div className="flex flex-col md:flex-row gap-8 items-start">
-          <div className="w-32 h-32 md:w-40 md:h-40 shrink-0 rounded-2xl overflow-hidden border-2 border-accent/20 relative group/pic shadow-2xl">
-            <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-transparent z-10 opacity-60"></div>
-            <div className="absolute inset-0 bg-accent/10 opacity-0 group-hover/pic:opacity-100 transition-opacity duration-500 z-20"></div>
-            {/* User can replace 'logoImg' with 'profileImg' once added */}
-            <img
-              src={logoImg}
-              alt="Profile"
-              className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700 scale-110 group-hover/pic:scale-100"
-            />
-            <div className="absolute bottom-2 left-2 z-30 opacity-0 group-hover/pic:opacity-100 transition-opacity">
-              <span className="text-[10px] text-accent font-mono uppercase tracking-tighter bg-slate-900/80 px-2 py-1 rounded">Resume Photo</span>
-            </div>
-          </div>
-
           <div className="space-y-4 flex-1">
             <p className="text-lg text-slate-300 font-mono flex items-center gap-2">
               <MapPin size={18} className="text-accent" />
@@ -279,11 +265,7 @@ function App() {
       <div className="w-full px-4 md:w-[80%] max-w-[1600px] z-10 space-y-8">
         <header className="mb-12 border-b border-white/5 pb-8">
           <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-8">
-            <div className="flex items-center gap-6">
-              <div className="w-16 h-16 md:w-20 md:h-20 shrink-0 p-1 rounded-2xl bg-gradient-to-br from-cyan-500 to-magenta-500/20 flex items-center justify-center relative group/logo">
-                <div className="absolute inset-0 bg-accent/20 blur-xl rounded-full opacity-0 group-hover/logo:opacity-100 transition-opacity duration-700"></div>
-                <img src={logoImg} alt="Portfolio Logo" className="w-full h-full object-cover rounded-xl relative z-10" />
-              </div>
+            <div className="flex items-center">
               <div>
                 <h1 className="text-5xl md:text-7xl font-bold text-white tracking-tight mb-2 uppercase font-mono">
                   Abdul <span className="text-accent">Quddoos</span>
