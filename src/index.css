@@ -1,25 +1,126 @@
-@import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@300;400;500;600;700&family=Rubik:ital,wght@0,300..900;1,300..900&display=swap');
-@import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Geist:wght@300..800&family=Geist+Mono:wght@400..600&display=swap');
+@import 'tailwindcss';
 
 @theme {
-  --font-sans: 'Rubik', sans-serif;
-  --font-mono: 'Rajdhani', sans-serif;
+  --font-sans: 'Geist', ui-sans-serif, system-ui, sans-serif;
+  --font-mono: 'Geist Mono', ui-monospace, SFMono-Regular, monospace;
 
-  --color-slate-950: #060606;
-  /* Deep Black */
-  --color-slate-900: #141414;
-  /* Card BG */
-  --color-slate-800: #1f1f1f;
-  /* Lighter Black */
+  /* Ink — deep, slightly blue neutrals */
+  --color-ink-950: #05070c;
+  --color-ink-900: #0a0d16;
+  --color-ink-800: #10141f;
+  --color-ink-700: #1a2030;
+  --color-ink-600: #2a3245;
 
-  --color-accent: #FF014F;
-  /* Reeni Magenta */
-  --color-accent-hover: #d10141;
+  /* Foreground */
+  --color-fg: #e8ebf4;
+  --color-fg-muted: #9aa3b8;
+  --color-fg-subtle: #646d82;
+
+  /* Brand — indigo → cyan */
+  --color-accent: #7c86ff;
+  --color-accent-strong: #5b67f5;
+  --color-accent-2: #3dd6f5;
+  --color-success: #34d399;
+
+  --animate-aurora: aurora 18s ease-in-out infinite alternate;
+  --animate-marquee: marquee var(--marquee-duration, 40s) linear infinite;
+  --animate-shimmer: shimmer 2.4s linear infinite;
+  --animate-ping-slow: ping 2s cubic-bezier(0, 0, 0.2, 1) infinite;
+
+  @keyframes aurora {
+    0% {
+      transform: translate3d(-10%, -6%, 0) rotate(0deg) scale(1);
+    }
+    50% {
+      transform: translate3d(8%, 4%, 0) rotate(12deg) scale(1.15);
+    }
+    100% {
+      transform: translate3d(-4%, 8%, 0) rotate(-8deg) scale(1.05);
+    }
+  }
+
+  @keyframes marquee {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(-50%);
+    }
+  }
+
+  @keyframes shimmer {
+    from {
+      background-position: 200% 0;
+    }
+    to {
+      background-position: -200% 0;
+    }
+  }
 }
 
-/* Custom Utilities if needed, but standard tailwind usually enough */
-body {
-  background-color: var(--color-slate-950);
-  color: #fff;
-  font-family: var(--font-sans);
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 6rem;
+    color-scheme: dark;
+  }
+
+  body {
+    @apply bg-ink-950 text-fg font-sans antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  ::selection {
+    background: color-mix(in oklab, var(--color-accent) 40%, transparent);
+    color: white;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 3px;
+    border-radius: 6px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+  }
+}
+
+@utility text-gradient {
+  background-image: linear-gradient(
+    110deg,
+    var(--color-accent) 0%,
+    var(--color-accent-2) 45%,
+    #c4b5fd 70%,
+    var(--color-accent) 100%
+  );
+  background-size: 200% auto;
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+@utility glass {
+  background: color-mix(in oklab, var(--color-ink-900) 70%, transparent);
+  backdrop-filter: blur(14px) saturate(140%);
+  -webkit-backdrop-filter: blur(14px) saturate(140%);
+  border: 1px solid rgb(255 255 255 / 0.07);
+}
+
+@utility bg-grid {
+  background-image:
+    linear-gradient(to right, rgb(255 255 255 / 0.04) 1px, transparent 1px),
+    linear-gradient(to bottom, rgb(255 255 255 / 0.04) 1px, transparent 1px);
+  background-size: 64px 64px;
+}
+
+@utility mask-fade-edges {
+  mask-image: linear-gradient(to right, transparent, black 12%, black 88%, transparent);
+}
+
+@utility mask-radial {
+  mask-image: radial-gradient(ellipse 70% 60% at 50% 30%, black 30%, transparent 75%);
 }
